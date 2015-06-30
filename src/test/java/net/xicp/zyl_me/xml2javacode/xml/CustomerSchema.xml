@@ -1,0 +1,123 @@
+<customer>
+	<code>01001</code>
+	<name>北京中复电讯设备有限责任公司</name>
+	<abbrname>中复电讯</abbrname>
+	<sort_code>01</sort_code>
+	<domain_code>01</domain_code>
+	<industry>101</industry>
+	<address>朝阳区工体东路甲18号</address>
+	<postcode>100020</postcode>
+	<tax_reg_code>2546464646</tax_reg_code>
+	<bank_open>
+		<customerbank>
+			<ccuscode>01001</ccuscode>
+			<cbank>00001</cbank>
+			<cbranch>光大银行</cbranch>
+			<caccountnum>9879879656</caccountnum>
+			<caccountname />
+			<bdefault>True</bdefault>
+		</customerbank>
+	</bank_open>
+	<bank_acc_number>9879879656</bank_acc_number>
+	<seed_date>2006-08-25</seed_date>
+	<legal_man />
+	<email />
+	<contact />
+	<phone>010-65916591</phone>
+	<fax />
+	<bp />
+	<mobile />
+	<spec_operator>201001</spec_operator>
+	<discount_rate>0</discount_rate>
+	<credit_rank />
+	<credit_amount>200000</credit_amount>
+	<credit_deadline>60</credit_deadline>
+	<pay_condition />
+	<devliver_site />
+	<deliver_mode />
+	<head_corp_code>01001</head_corp_code>
+	<deli_warehouse />
+	<super_dept>201</super_dept>
+	<ar_rest>289983</ar_rest>
+	<last_tr_date>2006-09-15</last_tr_date>
+	<last_tr_amount>16768</last_tr_amount>
+	<last_rec_date>2006-10-30</last_rec_date>
+	<last_rec_amount>53</last_rec_amount>
+	<end_date />
+	<tr_frequency>0</tr_frequency>
+	<self_define1 />
+	<self_define2 />
+	<self_define3 />
+	<pricegrade>-1</pricegrade>
+	<CreatePerson>demo</CreatePerson>
+	<ModifyPerson>demo</ModifyPerson>
+	<ModifyDate>2006-10-30</ModifyDate>
+	<auth_class />
+	<self_define4 />
+	<self_define5 />
+	<self_define6 />
+	<self_define7 />
+	<self_define8 />
+	<self_define9 />
+	<self_define10 />
+	<self_define11 />
+	<self_define12 />
+	<self_define13 />
+	<self_define14 />
+	<self_define15 />
+	<self_define16 />
+	<InvoiceCompany>01001</InvoiceCompany>
+	<Credit>1</Credit>
+	<CreditByHead>0</CreditByHead>
+	<CreditDate>1</CreditDate>
+	<LicenceDate>0</LicenceDate>
+	<LicenceSDate />
+	<LicenceEDate />
+	<LicenceADays />
+	<BusinessDate>0</BusinessDate>
+	<BusinessSDate />
+	<BusinessEDate />
+	<BusinessADays />
+	<Proxy>0</Proxy>
+	<ProxySDate />
+	<ProxyEDate />
+	<ProxyADays />
+	<Memo />
+	<bLimitSale>0</bLimitSale>
+	<cCusCountryCode />
+	<cCusEnName />
+	<cCusEnAddr1 />
+	<cCusEnAddr2 />
+	<cCusEnAddr3 />
+	<cCusEnAddr4 />
+	<cCusPortCode />
+	<cPrimaryVen />
+	<fCommisionRate />
+	<fInsueRate />
+	<bHomeBranch>0</bHomeBranch>
+	<cBranchAddr />
+	<cBranchPhone />
+	<cBranchPerson />
+	<cCusTradeCCode>101</cCusTradeCCode>
+	<CustomerKCode />
+	<bCusState>1</bCusState>
+	<ccusbankcode>00001</ccusbankcode>
+	<cRelVendor>01002</cRelVendor>
+	<ccusexch_name>人民币</ccusexch_name>
+	<bshop>0</bshop>
+	<bcusdomestic>1</bcusdomestic>
+	<bcusoverseas>0</bcusoverseas>
+	<ccuscreditcompany>01001</ccuscreditcompany>
+	<ccussaprotocol>01</ccussaprotocol>
+	<ccusexprotocol />
+	<ccusotherprotocol />
+	<fcusdiscountrate />
+	<sa_invoicecustomersall>
+		<sa_invoicecustomers>
+			<ccuscode>01002</ccuscode>
+			<cinvoicecompany>01002</cinvoicecompany>
+			<autoid>16</autoid>
+			<bdefault>True</bdefault>
+		</sa_invoicecustomers>
+	</sa_invoicecustomersall>
+</customer>
