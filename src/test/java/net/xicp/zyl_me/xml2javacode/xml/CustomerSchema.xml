@@ -1,4 +1,4 @@
-<customer>
+<customer haha="haha">
 	<code>01001</code>
 	<name>北京中复电讯设备有限责任公司</name>
 	<abbrname>中复电讯</abbrname>
@@ -9,7 +9,7 @@
 	<postcode>100020</postcode>
 	<tax_reg_code>2546464646</tax_reg_code>
 	<bank_open>
-		<customerbank>
+		<customerbank eere="sadas">
 			<ccuscode>01001</ccuscode>
 			<cbank>00001</cbank>
 			<cbranch>光大银行</cbranch>
