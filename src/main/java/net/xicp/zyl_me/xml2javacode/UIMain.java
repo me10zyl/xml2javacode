@@ -51,13 +51,13 @@ public class UIMain extends JFrame {
 	public UIMain() {
 		setTitle("XML2JavaCodeGenerator");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 519, 402);
+		setBounds(100, 100, 546, 402);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		filePathTextFeild = new JTextField();
-		filePathTextFeild.setBounds(145, 5, 243, 24);
+		filePathTextFeild.setBounds(90, 5, 168, 24);
 		contentPane.add(filePathTextFeild);
 		filePathTextFeild.setColumns(10);
 		JLabel label = new JLabel("\u6587\u4EF6\u5730\u5740");
@@ -81,7 +81,7 @@ public class UIMain extends JFrame {
 		JButton button_1 = new JButton("\u6DF1\u5EA60\u5143\u7D20");
 		buttonsPanel.add(button_1);
 		JButton btnTree = new JButton("Tree");
-		btnTree.setBounds(402, 4, 85, 27);
+		btnTree.setBounds(361, 0, 102, 35);
 		contentPane.add(btnTree);
 		final JCheckBox depthcheckBox = new JCheckBox("\u662F\u5426\u6253\u5370\u6DF1\u5EA6");
 		depthcheckBox.setSelected(true);
@@ -91,6 +91,10 @@ public class UIMain extends JFrame {
 		final JCheckBox isPrintAttributecheckBox = new JCheckBox("\u662F\u5426\u6DFB\u52A0\u5C5E\u6027\u4F5C\u4E3A\u5B57\u6BB5");
 		isPrintAttributecheckBox.setBounds(124, 232, 200, 27);
 		contentPane.add(isPrintAttributecheckBox);
+		
+		JButton button = new JButton("\u6D4F\u89C8..");
+		button.setBounds(262, 4, 85, 27);
+		contentPane.add(button);
 		btnTree.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String text = filePathTextFeild.getText();

@@ -73,7 +73,7 @@ public class CodeGenerator {
 	}
 
 	public List<ElementWrapper> xml2javacodeListByDepth(File file, int depth, boolean isPrintAttribute) throws IOException, DocumentException, ElementNotFoundException {
-		List<ElementWrapper> elementWrappers = xml2javacodeList(readFile(file), "/*", isPrintAttribute);
+		List<ElementWrapper> elementWrappers = xml2javacodeList(Utils.readFile(file), "/*", isPrintAttribute);
 		List<ElementWrapper> newElementWrappers = new ArrayList<ElementWrapper>();
 		for (ElementWrapper elementWrapper : elementWrappers) {
 			if (elementWrapper.getDepth() == depth)
@@ -83,9 +83,41 @@ public class CodeGenerator {
 	}
 
 	public String xml2javacode(String xml, String xpathExpression, boolean isPrintAttribute) throws DocumentException, IOException, ElementNotFoundException {
+		return xml2javacode(xml, xpathExpression, isPrintAttribute, null);
+	}
+
+	public String xml2javacode(String xml, String xpathExpression, boolean isPrintAttribute, File descriptionFile) throws DocumentException, IOException, ElementNotFoundException {
 		StringBuilder sb = new StringBuilder();
 		List<ElementWrapper> list = xml2javacodeList(xml, xpathExpression, isPrintAttribute);
-		for (ElementWrapper elementWrapper : list) {
+		if (descriptionFile != null) {
+			InputStream in = new FileInputStream(descriptionFile);
+			BufferedReader br = new BufferedReader(new InputStreamReader(in));
+			String str = null;
+			while ((str = br.readLine()) != null) {
+				String[] split = str.split("\\s+");
+				for (ElementWrapper elementWrapper : list) {
+					if (elementWrapper.getNode().getName().equals(split[0]) && split.length > 1 && !split[1].matches("\\s+")) {
+						elementWrapper.setDescription(split[1]);
+					}
+				}
+			}
+			for (ElementWrapper elementWrapper : list) {
+				if (elementWrapper.getDescription() != null || "".equals(elementWrapper))
+					sb.append("/** " + elementWrapper.getDescription() + " */\n");
+				sb.append("private String " + elementWrapper.getNode().getName() + ";\n");
+			}
+		} else {
+			for (ElementWrapper elementWrapper : list) {
+				sb.append("private String " + elementWrapper.getNode().getName() + ";\n");
+			}
+		}
+		return sb.toString();
+	}
+
+	public String xml2javacodeByDepth(File file, int depth, boolean isPrintAttribute) throws IOException, DocumentException, ElementNotFoundException {
+		List<ElementWrapper> elementWrappers = xml2javacodeListByDepth(file, depth, isPrintAttribute);
+		StringBuilder sb = new StringBuilder();
+		for (ElementWrapper elementWrapper : elementWrappers) {
 			sb.append("private String " + elementWrapper.getNode().getName() + ";\n");
 		}
 		return sb.toString();
@@ -102,25 +134,12 @@ public class CodeGenerator {
 		return elementWrappers;
 	}
 
-	public String xml2javacodeByDepth(File file, int depth, boolean isPrintAttribute) throws IOException, DocumentException, ElementNotFoundException {
-		List<ElementWrapper> elementWrappers = xml2javacodeListByDepth(file, depth, isPrintAttribute);
-		StringBuilder sb = new StringBuilder();
-		for (ElementWrapper elementWrapper : elementWrappers) {
-			sb.append("private String " + elementWrapper.getNode().getName() + ";\n");
-		}
-		return sb.toString();
-	}
-
 	public String xml2javacode(File file, boolean isPrintAttribute) throws DocumentException, IOException, ElementNotFoundException {
 		return xml2javacode(new FileInputStream(file), isPrintAttribute);
 	}
 
-	public String readFile(File file) throws UnsupportedEncodingException, IOException, FileNotFoundException {
-		return readInputStream(new FileInputStream(file));
-	}
-
 	public int getMaxDepth(File f) throws UnsupportedEncodingException, FileNotFoundException, DocumentException, IOException, ElementNotFoundException {
-		List<ElementWrapper> elementWrappers = xml2javacodeListRoot(readFile(f), false);
+		List<ElementWrapper> elementWrappers = xml2javacodeListRoot(Utils.readFile(f), false);
 		int maxDepth = 0;
 		for (ElementWrapper wrapper : elementWrappers) {
 			if (wrapper.getDepth() > maxDepth) {
@@ -131,22 +150,11 @@ public class CodeGenerator {
 	}
 
 	public String xml2javacode(InputStream in, boolean isPrintAttribute) throws DocumentException, IOException, ElementNotFoundException {
-		return xml2javacode(readInputStream(in), "/*", isPrintAttribute);
-	}
-
-	public String readInputStream(InputStream in) throws UnsupportedEncodingException, IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(in, "utf-8"));
-		StringBuilder sb = new StringBuilder();
-		String str = null;
-		while ((str = br.readLine()) != null) {
-			sb.append(str);
-		}
-		br.close();
-		return sb.toString();
+		return xml2javacode(Utils.readInputStream(in), "/*", isPrintAttribute);
 	}
 
 	public String xml2javacodeSimple(InputStream in, boolean isPrintDepth, boolean isPrintAttribute) throws DocumentException, IOException, ElementNotFoundException {
-		return xml2javacodeSimple(readInputStream(in), "/*", isPrintDepth, isPrintAttribute);
+		return xml2javacodeSimple(Utils.readInputStream(in), "/*", isPrintDepth, isPrintAttribute);
 	}
 
 	public String xml2javacodeSimple(File file, boolean isPrintDepth, boolean isPrintAttribute) throws DocumentException, IOException, ElementNotFoundException {

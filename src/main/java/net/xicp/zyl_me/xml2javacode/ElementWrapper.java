@@ -11,7 +11,15 @@ public class ElementWrapper {
 	 * ´Ë½Úµã
 	 */
 	private Node node;
+	
+	private String description;
 
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
 	public ElementWrapper(int depth, Node node) {
 		super();
 		this.depth = depth;
