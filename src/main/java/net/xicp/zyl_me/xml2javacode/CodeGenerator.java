@@ -89,6 +89,12 @@ public class CodeGenerator {
 	public String xml2javacode(String xml, String xpathExpression, boolean isPrintAttribute, File descriptionFile) throws DocumentException, IOException, ElementNotFoundException {
 		StringBuilder sb = new StringBuilder();
 		List<ElementWrapper> list = xml2javacodeList(xml, xpathExpression, isPrintAttribute);
+		sb.append(getJavaCodeByElementWrapper(list, descriptionFile));
+		return sb.toString();
+	}
+
+	private String getJavaCodeByElementWrapper(List<ElementWrapper> list, File descriptionFile) throws FileNotFoundException, IOException {
+		StringBuilder sb = new StringBuilder();
 		if (descriptionFile != null) {
 			InputStream in = new FileInputStream(descriptionFile);
 			BufferedReader br = new BufferedReader(new InputStreamReader(in));
@@ -114,13 +120,11 @@ public class CodeGenerator {
 		return sb.toString();
 	}
 
-	public String xml2javacodeByDepth(File file, int depth, boolean isPrintAttribute) throws IOException, DocumentException, ElementNotFoundException {
+	public String xml2javacodeByDepth(File file, int depth, boolean isPrintAttribute, File descriptionFile) throws IOException, DocumentException, ElementNotFoundException {
 		List<ElementWrapper> elementWrappers = xml2javacodeListByDepth(file, depth, isPrintAttribute);
 		StringBuilder sb = new StringBuilder();
-		for (ElementWrapper elementWrapper : elementWrappers) {
-			sb.append("private String " + elementWrapper.getNode().getName() + ";\n");
-		}
-		return sb.toString();
+		String javacode = getJavaCodeByElementWrapper(elementWrappers,descriptionFile);
+		return sb.append(javacode).toString();
 	}
 
 	private List<ElementWrapper> xml2javacodeList(Element element, int depth, List<ElementWrapper> elementWrappers) throws IOException {

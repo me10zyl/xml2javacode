@@ -90,4 +90,4 @@ bCusState                     是否成交                                          
 ccusbankcode                  所属银行编码                                      nvarchar(50)
 cRelVendor                    对应供应商编码                                    nvarchar(20)
 ccusexch_name                 币种                                              nvarchar(50)
-
+haha 你好
