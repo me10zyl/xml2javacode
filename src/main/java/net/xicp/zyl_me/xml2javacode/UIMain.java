@@ -132,7 +132,7 @@ public class UIMain extends JFrame {
 		descriptionFileFormatDescription.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String lineSeparator = System.getProperty("line.separator", "\n");  
-				JOptionPane.showMessageDialog(UIMain.this, "字段描述文件格式："+lineSeparator+"${字段}\\s+${字段描述}\\s+.+"+lineSeparator+"如:"+lineSeparator+"code 客户编码"+lineSeparator+"name 客户名称 其他无关紧要的文字"+lineSeparator+"postcode 邮政编码 xxxxxx"+lineSeparator+"复制后的文本将为"+lineSeparator+"/** 客户编码 **/"+lineSeparator+"private String code;"+lineSeparator+"/** 客户名称 **/"+lineSeparator+"private String name;"+lineSeparator+"/** 邮政编码 **/"+lineSeparator+"private String postcode;"+lineSeparator+"Caution:添加描述文件后请重新Tree!");
+				JOptionPane.showMessageDialog(UIMain.this, "字段描述文件格式："+lineSeparator+"${字段}\\s+${字段描述}\\s+.+"+lineSeparator+"如:"+lineSeparator+"code 客户编码"+lineSeparator+"name 客户名称 其他无关紧要的文字"+lineSeparator+"postcode 邮政编码 xxxxxx"+lineSeparator+"复制后的文本将为"+lineSeparator+"/** 客户编码 **/"+lineSeparator+"private String code;"+lineSeparator+"/** 客户名称 **/"+lineSeparator+"private String name;"+lineSeparator+"/** 邮政编码 **/"+lineSeparator+"private String postcode;");
 			}
 		});
 		descriptionFileFormatDescription.setBounds(177, 84, 286, 27);
