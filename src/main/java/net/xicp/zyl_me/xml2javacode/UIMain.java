@@ -181,6 +181,10 @@ public class UIMain extends JFrame {
 									// TODO Auto-generated catch block
 									JOptionPane.showMessageDialog(UIMain.this, e1.getMessage());
 									e1.printStackTrace();
+								} catch (DescriptionFileFormatNotCorrectException e1) {
+									// TODO Auto-generated catch block
+									JOptionPane.showMessageDialog(UIMain.this, e1.getMessage());
+									e1.printStackTrace();
 								}
 							}
 						});
@@ -211,6 +215,10 @@ public class UIMain extends JFrame {
 									// TODO Auto-generated catch block
 									e1.printStackTrace();
 									JOptionPane.showMessageDialog(UIMain.this, e1.getMessage());
+								} catch (DescriptionFileFormatNotCorrectException e1) {
+									// TODO Auto-generated catch block
+									JOptionPane.showMessageDialog(UIMain.this, e1.getMessage());
+									e1.printStackTrace();
 								}
 							}
 						});

@@ -82,18 +82,18 @@ public class CodeGenerator {
 		return newElementWrappers;
 	}
 
-	public String xml2javacode(String xml, String xpathExpression, boolean isPrintAttribute) throws DocumentException, IOException, ElementNotFoundException {
+	public String xml2javacode(String xml, String xpathExpression, boolean isPrintAttribute) throws DocumentException, IOException, ElementNotFoundException, DescriptionFileFormatNotCorrectException {
 		return xml2javacode(xml, xpathExpression, isPrintAttribute, null);
 	}
 
-	public String xml2javacode(String xml, String xpathExpression, boolean isPrintAttribute, File descriptionFile) throws DocumentException, IOException, ElementNotFoundException {
+	public String xml2javacode(String xml, String xpathExpression, boolean isPrintAttribute, File descriptionFile) throws DocumentException, IOException, ElementNotFoundException, DescriptionFileFormatNotCorrectException {
 		StringBuilder sb = new StringBuilder();
 		List<ElementWrapper> list = xml2javacodeList(xml, xpathExpression, isPrintAttribute);
 		sb.append(getJavaCodeByElementWrapper(list, descriptionFile));
 		return sb.toString();
 	}
 
-	private String getJavaCodeByElementWrapper(List<ElementWrapper> list, File descriptionFile) throws FileNotFoundException, IOException {
+	private String getJavaCodeByElementWrapper(List<ElementWrapper> list, File descriptionFile) throws FileNotFoundException, IOException, ElementNotFoundException, DescriptionFileFormatNotCorrectException {
 		StringBuilder sb = new StringBuilder();
 		if (descriptionFile != null) {
 			InputStream in = new FileInputStream(descriptionFile);
@@ -101,8 +101,12 @@ public class CodeGenerator {
 			String str = null;
 			while ((str = br.readLine()) != null) {
 				String[] split = str.split("\\s+");
+				if(split.length < 2)
+				{
+					throw new DescriptionFileFormatNotCorrectException("请确认字段描述文件的格式是否正确");
+				}
 				for (ElementWrapper elementWrapper : list) {
-					if (elementWrapper.getNode().getName().equals(split[0]) && split.length > 1 && !split[1].matches("\\s+")) {
+					if (elementWrapper.getNode().getName().equals(split[0]) && !split[1].matches("\\s+")) {
 						elementWrapper.setDescription(split[1]);
 					}
 				}
@@ -120,7 +124,7 @@ public class CodeGenerator {
 		return sb.toString();
 	}
 
-	public String xml2javacodeByDepth(File file, int depth, boolean isPrintAttribute, File descriptionFile) throws IOException, DocumentException, ElementNotFoundException {
+	public String xml2javacodeByDepth(File file, int depth, boolean isPrintAttribute, File descriptionFile) throws IOException, DocumentException, ElementNotFoundException, DescriptionFileFormatNotCorrectException {
 		List<ElementWrapper> elementWrappers = xml2javacodeListByDepth(file, depth, isPrintAttribute);
 		StringBuilder sb = new StringBuilder();
 		String javacode = getJavaCodeByElementWrapper(elementWrappers,descriptionFile);
@@ -138,7 +142,7 @@ public class CodeGenerator {
 		return elementWrappers;
 	}
 
-	public String xml2javacode(File file, boolean isPrintAttribute) throws DocumentException, IOException, ElementNotFoundException {
+	public String xml2javacode(File file, boolean isPrintAttribute) throws DocumentException, IOException, ElementNotFoundException, DescriptionFileFormatNotCorrectException {
 		return xml2javacode(new FileInputStream(file), isPrintAttribute);
 	}
 
@@ -153,7 +157,7 @@ public class CodeGenerator {
 		return maxDepth;
 	}
 
-	public String xml2javacode(InputStream in, boolean isPrintAttribute) throws DocumentException, IOException, ElementNotFoundException {
+	public String xml2javacode(InputStream in, boolean isPrintAttribute) throws DocumentException, IOException, ElementNotFoundException, DescriptionFileFormatNotCorrectException {
 		return xml2javacode(Utils.readInputStream(in), "/*", isPrintAttribute);
 	}
 

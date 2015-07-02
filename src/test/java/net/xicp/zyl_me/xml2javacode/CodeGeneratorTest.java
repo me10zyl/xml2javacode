@@ -14,7 +14,7 @@ public class CodeGeneratorTest {
 	}
 	
 	@Test
-	public void testXml2javacode() throws DocumentException, IOException, ElementNotFoundException {
+	public void testXml2javacode() throws DocumentException, IOException, ElementNotFoundException, DescriptionFileFormatNotCorrectException {
 		CodeGenerator generator = new CodeGenerator();
 		String xml2javacode = generator.xml2javacode(Utils.readInputStream(this.getClass().getResourceAsStream("xml/CustomerSchema.xml")),"/*",false,new File("E:\\JavaEE\\xml2javacode\\src\\test\\java\\net\\xicp\\zyl_me\\xml2javacode\\xml\\CustomerSchemaDes"));
 		System.out.println(xml2javacode);
