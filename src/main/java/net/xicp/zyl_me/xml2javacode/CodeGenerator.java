@@ -21,6 +21,8 @@ import org.dom4j.Element;
 import org.dom4j.Node;
 
 public class CodeGenerator {
+	String lineSeparator = System.getProperty("line.separator", "\n");
+
 	private List<ElementWrapper> xml2javacodeList(String xml, String xpathExpression, boolean isPrintAttribute) throws DocumentException, IOException, ElementNotFoundException {
 		Document document = DocumentHelper.parseText(xml);
 		List<Node> nodes = document.selectNodes(xpathExpression);
@@ -62,7 +64,7 @@ public class CodeGenerator {
 			while (depth-- > 0) {
 				sb.append("|--");
 			}
-			sb.append(elementWrapper.getNode().getName() + "\n");
+			sb.append(elementWrapper.getNode().getName() + lineSeparator);
 		}
 		return sb.toString();
 	}
@@ -101,8 +103,7 @@ public class CodeGenerator {
 			String str = null;
 			while ((str = br.readLine()) != null) {
 				String[] split = str.split("\\s+");
-				if(split.length < 2)
-				{
+				if (split.length < 2) {
 					throw new DescriptionFileFormatNotCorrectException("请确认字段描述文件的格式是否正确");
 				}
 				for (ElementWrapper elementWrapper : list) {
@@ -127,7 +128,7 @@ public class CodeGenerator {
 	public String xml2javacodeByDepth(File file, int depth, boolean isPrintAttribute, File descriptionFile) throws IOException, DocumentException, ElementNotFoundException, DescriptionFileFormatNotCorrectException {
 		List<ElementWrapper> elementWrappers = xml2javacodeListByDepth(file, depth, isPrintAttribute);
 		StringBuilder sb = new StringBuilder();
-		String javacode = getJavaCodeByElementWrapper(elementWrappers,descriptionFile);
+		String javacode = getJavaCodeByElementWrapper(elementWrappers, descriptionFile);
 		return sb.append(javacode).toString();
 	}
 
